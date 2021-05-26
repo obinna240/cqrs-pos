@@ -38,6 +38,7 @@ public class UserAggregates {
 
     @CommandHandler
     public UserAggregates(RegisterUserCommand command) {
+
         var newUser = command.getUser();
         var password = newUser.getAccount().getPassword();
         passwordEncoder = new PasswordEncoderImpl(); //make this a bean
@@ -46,7 +47,7 @@ public class UserAggregates {
         newUser.setId(command.getId());
         newUser.getAccount().setPassword(hashPassword);
 
-        //generate or raise the event
+        //create a new event from the command
         var event = UserRegisteredEvent.builder()
                 .id(command.getId())
                 .user(newUser)
@@ -78,9 +79,13 @@ public class UserAggregates {
 
     @CommandHandler
     public void handle(RemoveUserCommand command) {
+        //create a new event
         var event = new UserRemovedEvent();
+
+        //set the event id for the command
         event.setId(command.getId());
 
+        //store the event in the event store and push to the bus
         AggregateLifecycle.apply(event);
     }
 
@@ -104,5 +109,7 @@ public class UserAggregates {
     @EventSourcingHandler
     public void on(UserRemovedEvent userRemovedEvent) {
 
+        //delete the aggregate
+        AggregateLifecycle.markDeleted();
     }
 }
