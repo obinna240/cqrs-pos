@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 /**
  * The Register command handles commands to register a user
  * It is important that the id of the command is annotated with
@@ -19,5 +22,8 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 public class RegisterUserCommand {
     @TargetAggregateIdentifier
     private String id;
+
+    @NotNull(message ="user cannot be null")
+    @Valid
     private User user;
 }
