@@ -1,3 +1,6 @@
+Set up
+=======
+
 
 1. create commands
 2. create events - events are created after something has happened. The user event objects are 
