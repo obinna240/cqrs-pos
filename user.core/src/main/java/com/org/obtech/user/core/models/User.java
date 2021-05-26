@@ -8,6 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +22,13 @@ public final class User {
 
    @Id
    private String id;
+   @NotEmpty(message = "First name cannot be null")
    private String firstname;
+   @NotEmpty(message = "Last name cannot be null")
    private String lastname;
+   @NotNull(message = "Account cannot be null")
    private Account account;
+   @Email(message = "Email MUST BE VALID")
+   private String email;
 
 }
