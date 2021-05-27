@@ -1,4 +1,4 @@
-package com.org.obtech.user.cmd.api.dto;
+package com.org.obtech.user.core.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

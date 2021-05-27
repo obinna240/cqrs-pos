@@ -14,3 +14,8 @@ READ DB.
 
 ### Classes
 It includes the UserEventHandler interface which handles 3 methods or the 3 events we generate i.e. the userRegisteredEvern, UserRemovedEvent and UserUpdatedEvent
+
+Query
+-
+We create classes to query the read database.
+We also need handlers to handle incoming query requests.

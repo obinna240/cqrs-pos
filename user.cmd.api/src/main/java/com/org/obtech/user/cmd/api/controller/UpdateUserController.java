@@ -1,8 +1,7 @@
 package com.org.obtech.user.cmd.api.controller;
 
-import com.org.obtech.user.cmd.api.commands.RegisterUserCommand;
 import com.org.obtech.user.cmd.api.commands.UpdateUserCommand;
-import com.org.obtech.user.cmd.api.dto.BaseResponse;
+import com.org.obtech.user.core.dto.BaseResponse;
 import com.org.obtech.user.cmd.api.dto.RegisterUserResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
