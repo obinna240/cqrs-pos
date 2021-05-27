@@ -30,3 +30,12 @@ Annotations
 -
 @QueryHandler - Axon annotation, used for annotating methods to handle incoming query requests,
 which usually involves querying the read database.
+
+Security
+-
+1. Spring security & OAuth2 - JWTS
+2. For authentication and authorization
+- Generate OAUTH2.0 Authorization Server
+- Create user service repository so that OAUTH can use the user data to authenticate
+- Implement web and auth server configuration classes.
+- Configure services to use OAUTH 2, so that the services can verify the JWTs
