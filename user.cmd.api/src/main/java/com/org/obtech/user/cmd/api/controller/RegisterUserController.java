@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Slf4j
@@ -32,20 +33,21 @@ public class RegisterUserController {
     }
 
     @PostMapping
-    public ResponseEntity<RegisterUserResponse> registerUser(@RequestBody RegisterUserCommand registerUserCommand) {
+    public ResponseEntity<RegisterUserResponse> registerUser(@Valid @RequestBody RegisterUserCommand registerUserCommand) {
         //generate a random uuid for the command
-        registerUserCommand.setId(UUID.randomUUID().toString());
+        var id = UUID.randomUUID().toString();
+        registerUserCommand.setId(id);
         try {
             //using send again here is kinda similar to Kafka acknowledgemet where
             //when it is 0, the producer does not wait for an acknowledgement, when it is 1, it does
             //sendAndWait, sends the request and waits for a response
             //send simply sends and assumes that the command has been handled
             commandGateway.sendAndWait(registerUserCommand); //we ca also include a timeout value here
-            return new ResponseEntity<>(new RegisterUserResponse("Successfully registered"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new RegisterUserResponse(id,"Successfully registered"), HttpStatus.CREATED);
         } catch (Exception exception) {
-            var safeErrorMessage = "Error processing user request for id = "+ registerUserCommand.getId();
+            var safeErrorMessage = "Error processing user request for id = "+ id;
             log.error(exception.getMessage());
-            return new ResponseEntity<>(new RegisterUserResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new RegisterUserResponse(id, safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
