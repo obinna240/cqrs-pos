@@ -29,7 +29,7 @@ public class UserLookupController {
         this.queryGateway = queryGateway;
     }
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/all")
     public ResponseEntity<UserLookupResponse> getAllUsers(){
         try {
             var query = new FindAllUsersQuery();
@@ -51,7 +51,7 @@ public class UserLookupController {
         }
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/id/{id}")
     public ResponseEntity<UserLookupResponse> getUserById(@PathVariable("id") String id){
         try {
             var query = new FindUserByIdQuery(id);
@@ -80,7 +80,7 @@ public class UserLookupController {
             return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch(Exception exception) {
-            var errormsg = "Unable to get search filter";
+            var errormsg = "Unable to get search request";
             return new ResponseEntity<>(new UserLookupResponse(errormsg, null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

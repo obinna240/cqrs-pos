@@ -25,3 +25,8 @@ Axon's features such as interceptors and message monitoring.
 Our queries will include:
 1. A query to find a user by id
 2. A query to search for users
+
+Annotations
+-
+@QueryHandler - Axon annotation, used for annotating methods to handle incoming query requests,
+which usually involves querying the read database.
