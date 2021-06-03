@@ -34,7 +34,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     //add authenticaiton manager
     @Autowired
-    @Qualifier("authenticationManagerBean")
+    @Qualifier("authenticationManagerBean") //we can remove this qualifier
     private AuthenticationManager authenticationManager;
 
     @Bean
