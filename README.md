@@ -25,7 +25,7 @@ event in an event store. So the event store will contain:
 - Event 3: ...
 
 
-![alt text](/Users/obinnaonyimadu/Downloads/cqrs_arch.jpeg)
+![alt text](docs/cqrs_arch.jpeg)
 
 ## Terminology
 
