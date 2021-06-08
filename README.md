@@ -1,7 +1,7 @@
 About the POC
 =======
 This project is designed to illustrate the workings of CQRS:
-It consists of 2 servcices broken up based on the CQRS segregation of responsibility:
+It consists of 2 services broken up based on the CQRS segregation of responsibility:
 Commands and Queries.
 So the two microservices implemented are the User command service and the User Query service.
 
